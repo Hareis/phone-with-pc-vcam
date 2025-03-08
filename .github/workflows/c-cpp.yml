@@ -12,8 +12,9 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: release-engineers/action-setup-bash@v1
     - name: mkdir_build
       run: mkdir build
     - name: make
       run: cd build && cmake .. && cmake --build .
+    
