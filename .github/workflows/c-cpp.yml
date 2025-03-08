@@ -21,7 +21,8 @@ jobs:
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
-        tag_name: ${{ github.ref }}
+      # 日期作为标签名 标签名 
+        tag_name: ${{  github.run_number}}
         files: |
           build/Release
     
