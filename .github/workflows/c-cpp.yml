@@ -12,9 +12,19 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: release-engineers/action-setup-bash@v1
+    - uses: actions/checkout@v4
     - name: mkdir_build
       run: mkdir build
     - name: make
       run: cd build && cmake .. && cmake --build .
+    # 将打包好的文件输出成release版本
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          build/*.exe
+          build/*.dll
+          build/*.pdb
+          
+    
     
