@@ -17,14 +17,19 @@ jobs:
       run: mkdir build
     - name: make
       run: cd build && cmake .. && cmake --build .
-    # 将打包好的文件输出成release版本
-    - name: Release
-      uses: softprops/action-gh-release@v1
+    # 将打包好的文件输出成release版本,GitHub Releases 需要一个标签
+    - name: release
+      uses: ncipollo/release-action@v1
       with:
-        files: |
-          build/*.exe
-          build/*.dll
-          build/*.pdb
-          
+        artifacts: "build/*.exe"
+        token: ${{ secrets.GITHUB_TOKEN }}
+        # 以当前日期作为tag
+        tag: ${{ github.run_number }}
+        allowUpdates: true
+        name: "release"
+        body: "release"
+        prerelease: false
+        draft: false
+
     
     
